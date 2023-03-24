@@ -24,7 +24,7 @@ public class MainAgent extends Agent {
                 String content = msg.getContent();
                 // обработка входящего JSON-файла
                 Parser parser = new Parser();
-                parser.JsonSerialize();
+                //parser.JsonSerialize();
 
             } else {
                 block();

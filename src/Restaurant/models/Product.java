@@ -5,7 +5,7 @@ public class Product {
     private Boolean isFood_;
     private Integer id_;
     public Integer quantity_;
-    // здесь куча свойств
+
     public Product(String name, Boolean isFood, Integer id, Integer quantity) {
         name_ = name;
         isFood_ = isFood;

@@ -1,25 +1,21 @@
 package Restaurant.models;
 public class Cooker {
-    private Integer cookId_;
-    private String name_;
-    private Boolean active_;
+    private Integer cook_id;
+    private String cook_name;
+    private Boolean cook_active;
 
     Cooker(Integer id, String name, Boolean active ) {
-        cookId_ = id;
-        name_ = name;
-        active_ = active;
+        cook_id = id;
+        cook_name = name;
+        cook_active = active;
     }
-
     public int getId() {
-        return cookId_;
+        return cook_id;
     }
-
     public String getName() {
-        return name_;
+        return cook_name;
     }
-
     public Boolean isActive() {
-        return active_;
+        return cook_active;
     }
-
 }

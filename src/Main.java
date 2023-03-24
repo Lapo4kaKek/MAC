@@ -5,5 +5,9 @@ import jade.lang.acl.MessageTemplate;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
+        Parser parser = new Parser();
+        parser.getCookersJson();
+        parser.getGuestsJson();
+        parser.getDishesCardsJson();
     }
 }
