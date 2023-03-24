@@ -1,15 +1,16 @@
 package Restaurant.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GuestsList {
-    private ArrayList<Guest> guests;
+    private List<Guest> visitors_orders;
 
-    public ArrayList<Guest> getGuests() {
-        return guests;
+    public List<Guest> getVisitorsOrders() {
+        return visitors_orders;
     }
 
-    public void setCookers(ArrayList<Guest> cookers) {
-        this.guests = cookers;
+    public void setVisitorsOrders(List<Guest> visitors_orders) {
+        this.visitors_orders = visitors_orders;
     }
 }

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import Restaurant.models.DishCards.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,23 +39,43 @@ public class Parser {
             e.printStackTrace();
         }
     }
-    public void getGuestsJson() {
-        Path path = Paths.get("input/guests.txt");
-        try {
-            GuestsList guestsList = new Gson().fromJson(new String(Files.readAllBytes(path)), GuestsList.class);
-            //System.out.println(guestsList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
+    // it's Ok
     public void getDishesCardsJson() {
         Path path = Paths.get("input/dish_cards.json");
         try {
             DishCards dishCards = new Gson().fromJson(new String(Files.readAllBytes(path)), DishCards.class);
-            int x =4;
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    // it's Ok
+    public void getGuestsJson() {
+        Path path = Paths.get("input/guests.txt");
+        try {
+            GuestsList guestsList = new Gson().fromJson(new String(Files.readAllBytes(path)), GuestsList.class);
+            // System.out.println(guestsList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getEquipmentJson() {
+        Path path = Paths.get("input/equipment.txt");
+        try {
+            EquipmentList equipmentList = new Gson().fromJson(new String(Files.readAllBytes(path)), EquipmentList.class );
+            System.out.println(equipmentList);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getEquipmentTypeJson() {
+        Path path = Paths.get("input/equipment_type.txt");
+        try {
+            EquipmentTypeList equipmentTypeList = new Gson()
+                    .fromJson(new String(Files.readAllBytes(path)), EquipmentTypeList.class);
+            System.out.println(equipmentTypeList);
+        } catch (IOException e) {
+            e.printStackTrace();;
         }
     }
 }

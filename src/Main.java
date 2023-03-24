@@ -9,5 +9,7 @@ public class Main {
         parser.getCookersJson();
         parser.getGuestsJson();
         parser.getDishesCardsJson();
+        parser.getEquipmentJson();
+        parser.getEquipmentTypeJson();
     }
 }

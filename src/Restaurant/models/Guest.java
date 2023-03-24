@@ -2,33 +2,61 @@ package Restaurant.models;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Guest {
     private String vis_name;
-    private Time vis_ord_started;
-    private Time vis_ord_ended;
+    private String vis_ord_started;
+    private String vis_ord_ended;
     private Integer vis_ord_total;
-    private ArrayList<DishCard> vis_ord_dishes;
-    private Time cooking_time_;
-    private Integer list_id_;
-    public Guest(String name, Time start, Time end, Integer total) {
+    private List<VisOrdDish> vis_ord_dishes;
+
+    public Guest(String name, String start, String end, Integer total) {
         vis_name = name;
         vis_ord_started = start;
         vis_ord_ended = end;
         vis_ord_total = total;
     }
-    public Guest() {};
-    public void SelectDish(ArrayList<DishCard> dishes, Integer id) {
-        vis_ord_dishes = dishes;
-        list_id_ = id;
-    }
-    public void updateCookingTime(Time cooking_time) {
-        if (cooking_time.getSeconds() > 0) {
-            cooking_time_ = cooking_time;
-        }
-    }
-    public void addDish(DishCard dish) {
-        vis_ord_dishes.add(dish);
+
+    public Guest() {}
+
+    public String getVisName() {
+        return vis_name;
     }
 
+    public void setVisName(String vis_name) {
+        this.vis_name = vis_name;
+    }
+
+    public String getVisOrdStarted() {
+        return vis_ord_started;
+    }
+
+    public void setVisOrdStarted(String vis_ord_started) {
+        this.vis_ord_started = vis_ord_started;
+    }
+
+    public String getVisOrdEnded() {
+        return vis_ord_ended;
+    }
+
+    public void setVisOrdEnded(String vis_ord_ended) {
+        this.vis_ord_ended = vis_ord_ended;
+    }
+
+    public Integer getVisOrdTotal() {
+        return vis_ord_total;
+    }
+
+    public void setVisOrdTotal(Integer vis_ord_total) {
+        this.vis_ord_total = vis_ord_total;
+    }
+
+    public List<VisOrdDish> getVisOrdDishes() {
+        return vis_ord_dishes;
+    }
+
+    public void setVisOrdDishes(List<VisOrdDish> vis_ord_dishes) {
+        this.vis_ord_dishes = vis_ord_dishes;
+    }
 }

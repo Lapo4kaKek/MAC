@@ -2,22 +2,22 @@ package Restaurant.models;
 
 
 public class Equipment {
-    private String name_;
-    private Boolean active_;
-    private Integer type_;
+    private String equip_name;
+    private Boolean equip_active;
+    private Integer equip_type;
     public Equipment(String name, Boolean active, Integer type) {
-        name_ = name;
-        active_ = active;
-        type_ = type;
+        equip_name = name;
+        equip_active = active;
+        equip_type = type;
     }
 
     public String getName(){ 
-        return name_;
+        return equip_name;
     }
     public Boolean getActive(){
-        return active_;
+        return equip_active;
     }
     public Integer getType(){
-        return type_;
+        return equip_type;
     }
 }
