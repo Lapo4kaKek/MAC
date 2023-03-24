@@ -1,11 +1,12 @@
 package Restaurant.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsList {
-    private ArrayList<Product> products;
+    private List<Product> products;
 
-    public ArrayList<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 

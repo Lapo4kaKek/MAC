@@ -1,10 +1,16 @@
 package Restaurant.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Product {
+    //@SerializedName(value = "name_", alternate = {"product_name"})
     private String name_;
+    //@SerializedName(value = "name", alternate = {"product_name"})
     private Boolean isFood_;
+    //@SerializedName(value = "name", alternate = {"product_name"})
     private Integer id_;
-    public Integer quantity_;
+    //@SerializedName(value = "name", alternate = {"product_name"})
+    private Integer quantity_;
 
     public Product(String name, Boolean isFood, Integer id, Integer quantity) {
         name_ = name;

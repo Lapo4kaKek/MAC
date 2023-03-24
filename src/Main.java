@@ -6,10 +6,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Parser parser = new Parser();
-        parser.getCookersJson();
+        parser.JsonParse();
+        /*parser.getCookersJson();
         parser.getGuestsJson();
         parser.getDishesCardsJson();
         parser.getEquipmentJson();
         parser.getEquipmentTypeJson();
+        parser.getProductTypeJson();
+        parser.getMenuJson();
+        parser.getProductsJson();*/
     }
 }

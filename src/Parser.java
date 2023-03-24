@@ -2,20 +2,15 @@
 
 import Restaurant.models.*;
 import Restaurant.models.DishCards;
-import com.google.gson.reflect.TypeToken;
-import org.json.*;
 import com.google.gson.Gson;
-import Restaurant.models.DishCards.*;
-import java.io.File;
+
 import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import Restaurant.models.*;
+import java.util.concurrent.*;
 
 public class Parser {
     Menu menu;
@@ -25,6 +20,58 @@ public class Parser {
     ArrayList<Equipment> equipments;
 
 
+
+    public void JsonParse() {
+        ExecutorService executor = Executors.newFixedThreadPool(8); // создаем пул потоков
+        List<Callable<Void>> tasks = new ArrayList<>(); // создаем список задач
+        // Добавляем задачи в список
+        tasks.add(() -> {
+            getCookersJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getDishesCardsJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getGuestsJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getEquipmentJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getEquipmentTypeJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getProductsJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getProductTypeJson();
+            return null;
+        });
+        tasks.add(() -> {
+            getMenuJson();
+            return null;
+        });
+
+        // выполняем задачи и получаем список Future
+        try {
+            List<Future<Void>> futures = executor.invokeAll(tasks);
+            for (Future<Void> future : futures) {
+                // ожидаем завершения задачи
+                future.get();
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            // закрываем пул потоков
+            executor.shutdown();
+        }
+    }
     // it's Ok
     public void getCookersJson() {
         Path path = Paths.get("input/cookers.txt"); // создаем объект Path для файла products.json
@@ -59,6 +106,7 @@ public class Parser {
             e.printStackTrace();
         }
     }
+    // it's Ok
     public void getEquipmentJson() {
         Path path = Paths.get("input/equipment.txt");
         try {
@@ -68,6 +116,7 @@ public class Parser {
             e.printStackTrace();
         }
     }
+    // it's Ok
     public void getEquipmentTypeJson() {
         Path path = Paths.get("input/equipment_type.txt");
         try {
@@ -76,6 +125,46 @@ public class Parser {
             System.out.println(equipmentTypeList);
         } catch (IOException e) {
             e.printStackTrace();;
+        }
+    }
+    /* здесь нужно поправить поля в products для совпадения
+    public void getProductsJson() {
+        Path path = Paths.get("input/products.txt");
+        try {
+            ProductsList productsList = new Gson().fromJson(new String(Files.readAllBytes(path)), ProductsList.class);
+            System.out.println(productsList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+    // it's Ok
+    public void getProductTypeJson() {
+        Path path = Paths.get("input/product_types.txt");
+        try {
+            ProductTypes productTypes = new Gson().fromJson(new String(Files.readAllBytes(path)), ProductTypes.class);
+            System.out.println(productTypes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // it's Ok
+    public void getMenuJson() {
+        Path path = Paths.get("input/menu_dishes.txt");
+        try {
+            MenuDishesList menuDishesList = new Gson().fromJson(new String(Files.readAllBytes(path)), MenuDishesList.class);
+            System.out.println(menuDishesList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // it's Ok
+    public void getProductsJson() {
+        Path path = Paths.get("input/products.txt");
+        try {
+            AdvancedProductList productList = new Gson().fromJson(new String(Files.readAllBytes(path)), AdvancedProductList.class);
+            System.out.println(productList);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
