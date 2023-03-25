@@ -64,6 +64,7 @@ try {
       System.out.println(equipmentList);
 } catch(IOException e) {
       e.printStackTrace();
+      System.out.println(e.getMessage());
 }
 ```
 В случае, если что-то идет не так - ловится исключение и выводится ошибка на экран
@@ -73,8 +74,17 @@ try {
 ### Для МАС используется Jade. Jar файлы Jade, Gson и тд расположены в static (+1)
 
 ### Используется паттерн компоновщик (+1)
-Есть Product.java и ProductList.java которые реализуют интерфейс ProductComponent
-
+Есть Product.java и ProductList.java которые реализуют интерфейс IProductComponent
+```java
+public interface IProductComponent {
+    String getName();
+    Integer getId();
+    Boolean isFood();
+    Integer getQuantity();
+    void updateQuantity(Integer new_quantity);
+    void pickUp(int count);
+}
+```
 Теперь мы можем использовать ProductsList для хранения как листовых элементов Product, так и других экземпляров ProductsList. Мы можем добавлять и удалять элементы как из ProductsList, так и из вложенных ProductsList.
 
 ### Используется паттерн Singleton (+1)
