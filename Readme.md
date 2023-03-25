@@ -63,15 +63,59 @@ try {
       EquipmentList.class );
       System.out.println(equipmentList);
 } catch(IOException e) {
-            e.printStackTrace();
+      e.printStackTrace();
 }
 ```
 В случае, если что-то идет не так - ловится исключение и выводится ошибка на экран
 
 Например:
 ![](static/iamgay.png)
-### Для МАС используется Jade. Jar файлы Jade, Gson и тд расположены в static (+1 or +2)
+### Для МАС используется Jade. Jar файлы Jade, Gson и тд расположены в static (+1)
 
+### Используется паттерн компоновщик (+1)
+Есть Product.java и ProductList.java которые реализуют интерфейс ProductComponent
 
+Теперь мы можем использовать ProductsList для хранения как листовых элементов Product, так и других экземпляров ProductsList. Мы можем добавлять и удалять элементы как из ProductsList, так и из вложенных ProductsList.
+
+### Используется паттерн Singleton (+1)
+Так как меню у нас одно (было бы странно если для каждого гостя отдельное меню) то можно использовать
+паттерн Singleton. Благодаря ему, у нас не произойдет ситуации когда в программе существует более одного меню.
+
+```java
+public class Menu {
+    private static Menu instance_;
+    private ArrayList<DishCard> list_;
+
+    private Menu(ArrayList<DishCard> list) {
+        list_ = list;
+    }
+
+    public static Menu getInstance(ArrayList<DishCard> list) {
+        if (instance_ == null) {
+            instance_ = new Menu(list);
+        } else {
+            instance_.updateMenu(list);
+        }
+        return instance_;
+    }
+
+    private void updateMenu(ArrayList<DishCard> new_list) {
+        list_ = new_list;
+    }
+
+    public void deleteDish(DishCard dish) {
+        for (DishCard element : list_) {
+            if (element.getDishName().equals(dish.getDishName())) {
+                list_.remove(dish);
+                break;
+            }
+        }
+    }
+
+    public void addDish(DishCard dish) {
+        list_.add(dish);
+    }
+}
+```
 
 

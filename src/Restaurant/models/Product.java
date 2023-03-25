@@ -2,7 +2,7 @@ package Restaurant.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+public class Product implements IProductComponent {
     //@SerializedName(value = "name_", alternate = {"product_name"})
     private String name_;
     //@SerializedName(value = "name", alternate = {"product_name"})
@@ -41,6 +41,4 @@ public class Product {
             // тут что-то
         }
     }
-
-
 }

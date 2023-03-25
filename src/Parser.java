@@ -83,7 +83,7 @@ public class Parser {
             //System.out.println(cookers);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -92,8 +92,9 @@ public class Parser {
         Path path = Paths.get("input/dish_cards.json");
         try {
             DishCards dishCards = new Gson().fromJson(new String(Files.readAllBytes(path)), DishCards.class);
+            System.out.println(dishCards);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     // it's Ok
@@ -101,9 +102,9 @@ public class Parser {
         Path path = Paths.get("input/guests.txt");
         try {
             GuestsList guestsList = new Gson().fromJson(new String(Files.readAllBytes(path)), GuestsList.class);
-            // System.out.println(guestsList);
+            System.out.println(guestsList);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     // it's Ok
@@ -113,7 +114,7 @@ public class Parser {
             EquipmentList equipmentList = new Gson().fromJson(new String(Files.readAllBytes(path)), EquipmentList.class );
             System.out.println(equipmentList);
         } catch(IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     // it's Ok
@@ -124,7 +125,7 @@ public class Parser {
                     .fromJson(new String(Files.readAllBytes(path)), EquipmentTypeList.class);
             System.out.println(equipmentTypeList);
         } catch (IOException e) {
-            e.printStackTrace();;
+            System.out.println(e.getMessage());
         }
     }
     /* здесь нужно поправить поля в products для совпадения
@@ -144,7 +145,7 @@ public class Parser {
             ProductTypes productTypes = new Gson().fromJson(new String(Files.readAllBytes(path)), ProductTypes.class);
             System.out.println(productTypes);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     // it's Ok
@@ -154,7 +155,7 @@ public class Parser {
             MenuDishesList menuDishesList = new Gson().fromJson(new String(Files.readAllBytes(path)), MenuDishesList.class);
             System.out.println(menuDishesList);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     // it's Ok
@@ -164,7 +165,7 @@ public class Parser {
             AdvancedProductList productList = new Gson().fromJson(new String(Files.readAllBytes(path)), AdvancedProductList.class);
             System.out.println(productList);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

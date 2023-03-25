@@ -2,8 +2,9 @@ package Restaurant.models;
 
 
 import java.sql.Time;
+import java.util.List;
 
-class AdvancedProduct {
+class AdvancedProduct{
     private Integer prod_item_id;
     private Integer prod_item_type;
     private String prod_item_name;
@@ -41,4 +42,6 @@ class AdvancedProduct {
     public String getProdValidUntil() {
         return prod_item_valid_until;
     }
+
+    
 }
