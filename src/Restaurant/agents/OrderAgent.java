@@ -1,5 +1,6 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogger;
 import Restaurant.agents.GuestAgent;
 import Restaurant.models.DishCard;
 import jade.core.AID;
@@ -25,11 +26,13 @@ public class OrderAgent extends Agent {
     protected void setup() {
         // Создание заказа Гостя
         logger.info("Create Order with dishes: \n" );
-        //Object[] obj = getArguments();
-        //dishes = (ArrayList<DishCard>) obj[0];
-        //for (DishCard x : dishes) {
-            //logger.info(x.getDishName());
-        //}
+        AgentLogger.logMessage("Menu:", "Create Order with dishes");
+        Object[] obj = getArguments();
+        dishes = (ArrayList<DishCard>) obj[0];
+        for (DishCard x : dishes) {
+            logger.info(x.getDishName());
+            AgentLogger.logMessage("-", x.getDishName());
+        }
     }
 
     // Выполняется 1 раз - после создания посетителя

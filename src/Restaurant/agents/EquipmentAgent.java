@@ -1,5 +1,6 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogger;
 import Restaurant.models.Equipment;
 import jade.core.AID;
 import jade.core.Agent;
@@ -23,6 +24,7 @@ public class EquipmentAgent extends Agent {
         Object[] content = getArguments();
         cooker = (Equipment) content[0];
         logger.info("Create Equipment " + getLocalName());
+        AgentLogger.logMessage("Admin", "Create Equipment " + getLocalName());
     }
 
     // Выполняется 1 раз - после создания посетителя

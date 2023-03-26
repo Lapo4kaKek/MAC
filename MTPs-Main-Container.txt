@@ -1,1 +1,1 @@
-http://mbp-vasilij:56611/acc
+http://192.168.50.71:60439/acc

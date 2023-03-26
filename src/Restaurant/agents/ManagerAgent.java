@@ -1,5 +1,7 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogEntry;
+import Restaurant.Logger.AgentLogger;
 import Restaurant.models.*;
 import jade.core.AID;
 import jade.core.Agent;
@@ -20,6 +22,8 @@ import java.util.logging.*;
 
 
 public class ManagerAgent extends Agent {
+    //JsonLogger jsonLogger = new JsonLogger();
+
     private static final Logger logger = Logger.getLogger(GuestAgent.class.getName());
     AID stockAgentAid;
     int count = 1;
@@ -42,6 +46,7 @@ public class ManagerAgent extends Agent {
         // проинициализировать меню
         // Создание Менеджера
         logger.info("Create " + getLocalName());
+        AgentLogger.logMessage("Admin", "Create " + getLocalName());
         Object[] args = getArguments();
         cookers = (ArrayList<Cooker>) args[0];
         equipments = (ArrayList<Equipment>) args[1];
@@ -110,6 +115,8 @@ public class ManagerAgent extends Agent {
                     switch (mes.message) {
                         case Constants.OrderMessage:
                             logger.info("Manager receive order from " + msg.getSender().getLocalName());
+                            AgentLogger.logMessage("Manager:", "Manager receive order from " + msg.getSender().getLocalName());
+                            //jsonLogger.addStringToJsonFile("Manager receive order from " + msg.getSender().getLocalName());
                             try{
                                 ArrayList<DishCard> dishesInOrder = new ArrayList<DishCard>();
                                 for (VisOrdDish x : mes.id) {
@@ -126,6 +133,8 @@ public class ManagerAgent extends Agent {
                                 AID orderAgent = new AID("Order" + orders.size() + 1, AID.ISLOCALNAME);
                                 orders.add(orderAgent);
                                 logger.info("We Start to make this Order");
+                                AgentLogger.logMessage("Manager", "We Start to make this Order");
+                                //jsonLogger.addStringToJsonFile("We Start to make this Order");
                                 addBehaviour(new MakeOrderBehaviour(controller, dishesInOrder, msg.getSender()));
                             } catch (StaleProxyException e) {
                                 throw new RuntimeException(e);
@@ -171,6 +180,8 @@ public class ManagerAgent extends Agent {
             }*/
             if (fl) {
                 logger.info("We have all products to make this order");
+                AgentLogger.logMessage("Admin","We have all products to make this order" );
+                //jsonLogger.addStringToJsonFile("We have all products to make this order");
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -184,15 +195,19 @@ public class ManagerAgent extends Agent {
             // Проверяем поваров
             Boolean findCooker = false;
             logger.info("Manager starts to choose the cooker for this order");
+            AgentLogger.logMessage("Manager:","Manager starts to choose the cooker for this order");
+            //jsonLogger.addStringToJsonFile("Manager starts to choose the cooker for this order");
             // Логика выбора
             for (int i = 0; i < cookers.size(); i++) {
                 if (!cookers.get(i).isActive()) {
                     logger.info("Manager find Cooker without work, name of this Cooker: " + cookers.get(i).getName());
+                    //AgentLogger.logMessage("Manager","Manager find Cooker without work, name of this Cooker: " + cookers.get(i).getName());
                     findCooker = true;
                 }
             }
             if (!findCooker) {
                 logger.info("All cookers are busy. Sorry");
+                AgentLogger.logMessage("Manager", "All cookers are busy. Sorry");
                 return;
             }
             totalTime -= 0.1 * totalTime;
@@ -204,6 +219,7 @@ public class ManagerAgent extends Agent {
                 for (Equipment y : equipments) {
                     if (y.getType() == x.getEquipType() && y.getActive()) {
                         logger.info("Manager find Equipment, name of this Equipment: " + y.getName());
+                        //AgentLogger.logMessage("Manager", "Manager find Equipment, name of this Equipment: " + y.getName());
                         try {
                             Thread.sleep(300);
                         } catch (InterruptedException e) {
@@ -215,6 +231,7 @@ public class ManagerAgent extends Agent {
 
             if (!findEquipment) {
                 logger.info("Manager cant find equipment");
+                AgentLogger.logMessage("Manager", "Manager cant find equipment");
                 return;
             }
             //totalTime -= 0.1 * totalTime;
@@ -238,6 +255,7 @@ public class ManagerAgent extends Agent {
             public void action() {
                 try {
                     logger.info("Manager answer to " + guestaid.getLocalName() + " that time before order is ready is " + totalTime);
+                    AgentLogger.logMessage("Manager", "Manager answer to " + guestaid.getLocalName() + " that time before order is ready is " + totalTime);
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                 }
@@ -249,6 +267,7 @@ public class ManagerAgent extends Agent {
             public void action() {
                 try {
                     logger.info("Cooking...fry me...");
+                    AgentLogger.logMessage("Cooker","Cooking... fry me...");
                     addBehaviour(new AnswerAboutTimeBehaviour(0));
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -259,6 +278,7 @@ public class ManagerAgent extends Agent {
             @Override
             public void action() {
                 logger.info("Finishing Order #" + count);
+                AgentLogger.logMessage("Restaurant", "Finishing Order #" + count);
                 count += 1;
                 //Здесь по идее нужно убить агент заказа и ответить гостю, что его заказ готов
                 // Также нужно поменять статус поварам и обновить склад

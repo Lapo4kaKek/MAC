@@ -1,4 +1,5 @@
 package Restaurant.agents;
+import Restaurant.Logger.AgentLogger;
 import Restaurant.agents.*;
 import Restaurant.models.Guest;
 import Restaurant.models.Menu;
@@ -31,6 +32,7 @@ public class GuestAgent extends Agent {
 
         // Создание Гостя
         logger.info("Create Guest " + getLocalName());
+        //AgentLogger.logMessage("Admin", "Create Guest " + getLocalName());
         Object[] args = getArguments();
 
         dishesInOrder = new ArrayList<VisOrdDish>(((Guest)args[0]).getVisOrdDishes());
@@ -57,6 +59,7 @@ public class GuestAgent extends Agent {
                 message.setContentObject(mes);
                 send(message);
                 logger.info("Guest " + getAID().getName() + " request a menu ");
+                AgentLogger.logMessage("Manager", "Guest " + getAID().getName() + " request a menu ");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

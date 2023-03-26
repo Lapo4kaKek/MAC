@@ -1,5 +1,6 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogger;
 import Restaurant.models.Cooker;
 import jade.core.AID;
 import jade.core.Agent;
@@ -23,10 +24,8 @@ public class CookerAgent extends Agent {
         Object[] content = getArguments();
         cooker = (Cooker) content[0];
         logger.info("Create Cooker " + getLocalName());
+        AgentLogger.logMessage("Admin", "Create Cooker " + getLocalName().toString());
     }
-
-    // Выполняется 1 раз - после создания посетителя
-
 
     protected void takeDown() {
         System.out.println("Visitor agent " + getAID().getName() + " terminating.");

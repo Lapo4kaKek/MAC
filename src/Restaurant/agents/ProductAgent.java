@@ -1,5 +1,6 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogger;
 import Restaurant.models.AdvancedProduct;
 import Restaurant.models.Product;
 import jade.core.AID;
@@ -23,6 +24,7 @@ public class ProductAgent extends Agent {
         Object[] content = getArguments();
         product = (AdvancedProduct) content[0];
         logger.info("Create Product " + getLocalName());
+        AgentLogger.logMessage("Admin", "Create Product " + getLocalName());
     }
 
     // Выполняется 1 раз - после создания посетителя

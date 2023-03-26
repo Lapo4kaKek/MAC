@@ -8,8 +8,8 @@ import jade.wrapper.ContainerController;
 
 public class Main {
     public static void main(String[] args) {
-        JsonLogger jsonLogger = new JsonLogger();
-        jsonLogger.addStringToJsonFile("Hello world!");
+        //JsonLogger jsonLogger = new JsonLogger();
+        //jsonLogger.addStringToJsonFile("Hello world!");
         System.out.println("Hello world!");
         Parser parser = new Parser();
         parser.JsonParse();

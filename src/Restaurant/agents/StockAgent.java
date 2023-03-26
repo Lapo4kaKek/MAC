@@ -1,5 +1,6 @@
 package Restaurant.agents;
 
+import Restaurant.Logger.AgentLogger;
 import Restaurant.agents.GuestAgent;
 import Restaurant.models.AdvancedProduct;
 import Restaurant.models.Product;
@@ -39,6 +40,7 @@ public class StockAgent extends Agent {
             }
         }
         logger.info("Create Stock " + getLocalName());
+        AgentLogger.logMessage("Admin", "Create Stock " + getLocalName());
     }
 
 
