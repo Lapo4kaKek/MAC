@@ -3,7 +3,7 @@ package Restaurant.models;
 
 import java.util.List;
 
-class DishCard {
+public class DishCard {
     private int card_id;
     private String dish_name;
     private String card_descr;

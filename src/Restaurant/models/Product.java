@@ -2,7 +2,7 @@ package Restaurant.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Product implements IProductComponent {
+public class Product{
     //@SerializedName(value = "name_", alternate = {"product_name"})
     private String name_;
     //@SerializedName(value = "name", alternate = {"product_name"})

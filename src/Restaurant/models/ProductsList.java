@@ -3,7 +3,7 @@ package Restaurant.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsList implements IProductComponent {
+public class ProductsList {
     private List<IProductComponent> list_;
 
     public ProductsList() {
@@ -22,32 +22,32 @@ public class ProductsList implements IProductComponent {
         return list_;
     }
 
-    @Override
+    //@Override
     public String getName() {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    //@Override
     public Integer getId() {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    //@Override
     public Boolean isFood() {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    //@Override
     public Integer getQuantity() {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    //@Override
     public void updateQuantity(Integer new_quantity) {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    //@Override
     public void pickUp(int count) {
         throw new UnsupportedOperationException();
     }

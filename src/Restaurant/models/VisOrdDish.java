@@ -1,6 +1,8 @@
 package Restaurant.models;
 
-public class VisOrdDish {
+import java.io.Serializable;
+
+public class VisOrdDish implements Serializable {
     private int ord_dish_id;
     private int menu_dish;
 

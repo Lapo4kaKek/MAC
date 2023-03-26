@@ -13,14 +13,33 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class Parser {
-    Menu menu;
-    ArrayList<Guest> guests;
+    MenuDishesList menu;
+    //Menu menu;
+    List<Guest> guests;
     ArrayList<Cooker> cookers;
-    ArrayList<Operation> operations;
-    ArrayList<Equipment> equipments;
-
-
-
+    List<Operation> operations;
+    List<Equipment> equipments;
+    List<DishCard> dish_cards;
+    List<EquipmentType> equipmentTypeList;
+    List<AdvancedProduct> productList;
+    public List<Cooker> getCookers() {
+        return cookers;
+    }
+    public List<DishCard> getDishcard() {
+        return dish_cards;
+    }
+    public List<Equipment> getEquipments() {
+        return equipments;
+    }
+    public List<AdvancedProduct> getAdvancedProducts() {
+        return productList;
+    }
+    public List<Guest> getGuests() {
+        return guests;
+    }
+    public Guest getOneGuest(int index) {
+        return guests.get(index);
+    }
     public void JsonParse() {
         ExecutorService executor = Executors.newFixedThreadPool(8); // создаем пул потоков
         List<Callable<Void>> tasks = new ArrayList<>(); // создаем список задач
@@ -89,9 +108,10 @@ public class Parser {
 
     // it's Ok
     public void getDishesCardsJson() {
-        Path path = Paths.get("input/dish_cards.json");
+        Path path = Paths.get("input/dish_cards.txt");
         try {
             DishCards dishCards = new Gson().fromJson(new String(Files.readAllBytes(path)), DishCards.class);
+            dish_cards = dishCards.getDishCards();
             System.out.println(dishCards);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -99,9 +119,10 @@ public class Parser {
     }
     // it's Ok
     public void getGuestsJson() {
-        Path path = Paths.get("input/guests.txt");
+        Path path = Paths.get("input/visitors_orders.txt");
         try {
             GuestsList guestsList = new Gson().fromJson(new String(Files.readAllBytes(path)), GuestsList.class);
+            guests = guestsList.getVisitorsOrders();
             System.out.println(guestsList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -112,6 +133,7 @@ public class Parser {
         Path path = Paths.get("input/equipment.txt");
         try {
             EquipmentList equipmentList = new Gson().fromJson(new String(Files.readAllBytes(path)), EquipmentList.class );
+            equipments = equipmentList.getEquipments();
             System.out.println(equipmentList);
         } catch(IOException e) {
             System.out.println(e.getMessage());
@@ -121,8 +143,9 @@ public class Parser {
     public void getEquipmentTypeJson() {
         Path path = Paths.get("input/equipment_type.txt");
         try {
-            EquipmentTypeList equipmentTypeList = new Gson()
+            EquipmentTypeList equipmentTypeList_ = new Gson()
                     .fromJson(new String(Files.readAllBytes(path)), EquipmentTypeList.class);
+            equipmentTypeList = equipmentTypeList_.getVisitorsOrders();
             System.out.println(equipmentTypeList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -143,6 +166,7 @@ public class Parser {
         Path path = Paths.get("input/product_types.txt");
         try {
             ProductTypes productTypes = new Gson().fromJson(new String(Files.readAllBytes(path)), ProductTypes.class);
+
             System.out.println(productTypes);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -153,6 +177,7 @@ public class Parser {
         Path path = Paths.get("input/menu_dishes.txt");
         try {
             MenuDishesList menuDishesList = new Gson().fromJson(new String(Files.readAllBytes(path)), MenuDishesList.class);
+            menu = menuDishesList;
             System.out.println(menuDishesList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -162,8 +187,9 @@ public class Parser {
     public void getProductsJson() {
         Path path = Paths.get("input/products.txt");
         try {
-            AdvancedProductList productList = new Gson().fromJson(new String(Files.readAllBytes(path)), AdvancedProductList.class);
-            System.out.println(productList);
+            AdvancedProductList productList_ = new Gson().fromJson(new String(Files.readAllBytes(path)), AdvancedProductList.class);
+            productList = productList_.getProducts();
+            System.out.println(productList_);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

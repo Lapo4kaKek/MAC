@@ -5,7 +5,7 @@ import java.util.List;
 public class EquipmentList {
     private List<Equipment> equipment;
 
-    public List<Equipment> getVisitorsOrders() {
+    public List<Equipment> getEquipments() {
         return equipment;
     }
 
